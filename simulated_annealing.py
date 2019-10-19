@@ -36,16 +36,16 @@ class Tabuleiro:
     def atribui(self,novo_estado):
         self.rainhas = novo_estado
 
-
 def simulated_annealing(tabuleiro):
 
     atual = tabuleiro.estado_atual()
+    h_atual = heuristica(atual)
     for t in range(1,100000000):
-        temperatura = 500/math.sqrt(t)
+        temperatura = 0.7/math.sqrt(t)
         vizinho = tabuleiro.gera_vizinho(atual)
         h_viz = heuristica(vizinho)
         h_atual = heuristica(atual)
-        if h_atual == 0:
+        if h_atual == 0 or temperatura == 0:
             return atual
         elif h_viz<=h_atual:
             tabuleiro.atribui(vizinho)
