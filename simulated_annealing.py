@@ -4,16 +4,28 @@ import numpy as np
 from heuristic import heuristica
 
 class Tabuleiro:
-
+    '''
+    Classe para armazenar algumas funções relacionadas
+    ao estado e mudanças no tabuleiro
+    '''
     def __init__(self,tamanho):
+        '''
+        Inicia o tabuleiro com n rainhas posicionadas aleatoriamente
+        '''
         self.rainhas = []
-        for i in range(0,tamanho):
+        for _ in range(0,tamanho):
             self.rainhas.append(r.randint(0,tamanho-1))
     
     def estado_atual(self):
+        '''
+        Retorna o posicionamento atual das rainhas no tabuleiro
+        '''
         return self.rainhas
     
     def mostrar(self):
+        '''
+        Printa na tela, de forma bonitinha, o tabuleiro e as rainhas
+        '''
         for i in range(len(self.rainhas)):
             for j in range(len(self.rainhas)):
                 if self.rainhas[j] == i:
@@ -21,9 +33,12 @@ class Tabuleiro:
                 else:
                     print('-', end=" ")
             print()
-        print()
  
     def gera_vizinho(self,move):
+        '''
+        Seleciona uma rainha aleatória e a movimenta aleatoriamente no tabuleiro,
+        e então retorna essa nova organização, mas não muda o estado do tabuleiro
+        '''
         i = r.randint(0,len(self.rainhas)-1)
         vizinho = self.rainhas[:]
         while True:
@@ -34,6 +49,9 @@ class Tabuleiro:
         return vizinho
 
     def atribui(self,novo_estado):
+        '''
+        Muda o estado do tabuleiro
+        '''
         self.rainhas = novo_estado
 
 def simulated_annealing(tabuleiro):
@@ -58,10 +76,11 @@ def simulated_annealing(tabuleiro):
             atual = tabuleiro.estado_atual()
     return atual
 
-tabuleiro = Tabuleiro(40)
-print('Estado inicial aleatório: ')
+n = input('Com quantas rainhas deseja gerar o tabuleiro?: ')
+tabuleiro = Tabuleiro(int(n))
+print('\nEstado inicial aleatório: ')
 tabuleiro.mostrar()
 resposta = simulated_annealing(tabuleiro)
-print('Resposta encontrada: ')
+print('\nResposta encontrada: ')
 tabuleiro.mostrar()
 print('Ataques de rainhas no final: ',heuristica(resposta))    

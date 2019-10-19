@@ -1,5 +1,10 @@
 def heuristica(tabuleiro):
-    """Número de rainhas se atacando"""
+    """
+    Número de rainhas se atacando
+    
+    É calculado contando quantas rainhas estão na mesma linha
+    e também contando nas diagonais.
+    """
     horizontal = 0
     diagonal = 0
     for i in range(0,len(tabuleiro)):
