@@ -108,6 +108,8 @@ repetido = 0
 numero_iteracoes = 1
 mutacao = 0.03
 #Loop principal. Enquanto a resposta não for encontrada e também não tiver acontecido a iteração 1000 ele continua.
+#A taxa de mutação é aumentada se ele ficar preso em um máximo local por muito tempo
+
 while not fim[0] and numero_iteracoes < 3000:
     if numero_iteracoes%10==0:
         print('Geração {}.\nMelhor Resultado: {}\n'.format(numero_iteracoes, heuristica(fim[1])))
