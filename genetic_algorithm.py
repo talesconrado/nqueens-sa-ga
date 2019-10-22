@@ -113,7 +113,6 @@ mutacao = 0.03
 while not fim[0] and numero_iteracoes < 3000:
     if numero_iteracoes%10==0:
         print('Geração {}.\nMelhor Resultado: {}\n'.format(numero_iteracoes, heuristica(fim[1])))
-        print('Taxa de mutação atual: %.2f \n' %mutacao)
     nova_geracao = gera_filhos(populacao,mutacao)
     populacao = seleciona_mais_aptos(nova_geracao,geracao)
     fim = solucao_encontrada(populacao)
@@ -124,7 +123,7 @@ while not fim[0] and numero_iteracoes < 3000:
         repetido = 0
         mutacao = 0.03
     if repetido > 10:
-        mutacao += 0.01
+        mutacao += 0.005
     numero_iteracoes+=1
 
 display(fim[1])
