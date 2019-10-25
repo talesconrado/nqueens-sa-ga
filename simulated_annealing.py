@@ -1,6 +1,6 @@
 import random as r
 import math
-import numpy as np
+from numpy.random import choice
 from heuristic import heuristica
 
 class Tabuleiro:
@@ -70,7 +70,7 @@ def simulated_annealing(tabuleiro):
             atual = tabuleiro.estado_atual()
         else:
             prob = math.exp((h_atual-h_viz)/temperatura)
-            escolha = np.random.choice(['vizinho','atual'],p=[prob,1-prob])
+            escolha = choice(['vizinho','atual'],p=[prob,1-prob])
             if escolha == 'vizinho':
                 tabuleiro.atribui(vizinho)
             atual = tabuleiro.estado_atual()
